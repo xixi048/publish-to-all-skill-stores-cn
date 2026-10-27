@@ -62,7 +62,27 @@
 > 教训：CONTRIBUTING 写得再热情，也要先看 `pull_request_creation_policy`。
 > 一个 `gh api repos/<owner>/<repo>` 就能省掉一次白干。
 
-## 七、自建发现端点（不依赖任何商店审核）
+## 七、MCP 侧平台（相邻赛道，别和技能混着做）
+
+技能是「方法论」，MCP 是「可调用的服务」。国内 MCP 平台绝大多数**接管部署**，
+不是填 URL 就能上，交付物完全不同。
+
+| 平台 | 入口 | 形态 | 登录 |
+|---|---|---|---|
+| 魔搭 ModelScope | `modelscope.cn/mcp` | GitHub 快速创建 + 可托管部署（唯一有清晰路径的） | 阿里账号 |
+| 阿里云百炼 | `bailian.console.aliyun.com` → MCP 管理 | 控制台创建，需可调用服务 | 阿里云 + 实名 |
+| 百度 MCP World | `mcpworld.com` | 登录后投稿，收录量最大 | 百度账号 |
+| AIBase MCP | `mcp.aibase.cn/submit` | 表单公开可填，提交弹站长之家登录 | chinaz 账号 |
+| 讯飞 MCP | `mcp.xfyun.cn` | 星辰 MCP 发布 | 讯飞账号 |
+| 火山引擎 ATS | `volcengine.com/ats` | 无自助投稿，需商务 | 企业 |
+| 华为云 ModelArts | — | 合作型 | 企业 |
+
+**免登录可做的只有两处**：GitHub 中文榜 PR（`yzfly/Awesome-MCP-ZH`，7.8K star，允许外部 PR）
+与自建发现端点。
+
+逐站实测细节、魔搭的创建步骤、服务侧静默错误清单，见 [cn-mcp.md](cn-mcp.md)。
+
+## 八、自建发现端点（不依赖任何商店审核）
 
 仓库开 GitHub Pages，把索引放在 `docs/.well-known/agent-skills/index.json`，任何支持该约定的
 agent 都能直接发现你的技能源。
@@ -73,7 +93,7 @@ agent 都能直接发现你的技能源。
 索引就是一组 `{name, description, version, source, path, install}`，`source` 与 `install`
 都指向 GitHub 仓库本身（唯一真源），**不要指向任何镜像或第三方地址**。
 
-## 八、清单会变长
+## 九、清单会变长
 
 每轮开工前重新扫一遍，别拿上一轮当全集：
 

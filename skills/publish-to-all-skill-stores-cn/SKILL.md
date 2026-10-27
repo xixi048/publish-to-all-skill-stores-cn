@@ -4,7 +4,7 @@ description: "把 Agent 技能上架到国内 Skill 商店：腾讯 SkillHub、�
 license: MIT
 metadata:
   author: xixi048
-  version: "1.0.1"
+  version: "1.1.0"
   language: zh-CN
   scope: cn-only
 ---
@@ -82,6 +82,28 @@ SKILL.md 的 frontmatter 保持英文（它是给模型读的），本地化只�
 **定价。** 国内能收费的主要是腾讯 SkillPay（0 抽成，但只收依赖后端的 Pay Skill）与
 扣子 Coze（约 70%）。纯本地脚本型技能通常收不了钱，别为了收费把架构改成必须联网。
 见 [references/cn-paid-channels.md](references/cn-paid-channels.md)。
+
+## MCP 侧（相邻赛道，交付物不同）
+
+技能是「一份方法论」，MCP 是「一个可调用的服务」。同一个产品可以两边都发，
+但**国内的 MCP 平台不是填个 URL 就完事**：
+
+| 形态 | 平台做什么 | 你要交什么 |
+|---|---|---|
+| 元数据登记 | 只存一条记录 | 一个 URL |
+| **平台托管（国内主流）** | **接管部署，代码跑在它的容器里** | 可容器化的完整代码 |
+
+魔搭、百炼、火山都是第三类。走之前先问用户一句：**愿不愿意把服务代码托管给平台？**
+计费、密钥、数据留在自己服务器上的服务，搬过去就是另一个产品。
+
+三件事先做好再提交：端点能自己握手（`initialize` + `tools/list` + 一次真实调用）、
+仓库里放一个可跑的自检脚本、服务名在包内与服务端声明一致。
+
+**真正免登录的国内渠道只有两条**：GitHub 中文榜 PR（`yzfly/Awesome-MCP-ZH`，7.8K star，
+`pull_request_creation_policy: all`）与自建发现端点。其余平台都要手机号/实名，必须用户本人登录。
+
+逐站实测（入口、登录要求、卡点）、魔搭的完整创建路径、AIBase 的服务配置 JSON 格式，
+见 [references/cn-mcp.md](references/cn-mcp.md)。
 
 ## 提交配方
 

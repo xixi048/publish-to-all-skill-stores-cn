@@ -4,7 +4,7 @@ description: "把 Agent 技能上架到国内 Skill 商店：腾讯 SkillHub、�
 license: MIT
 metadata:
   author: xixi048
-  version: "1.1.0"
+  version: "1.1.1"
   language: zh-CN
   scope: cn-only
 ---
@@ -99,11 +99,20 @@ SKILL.md 的 frontmatter 保持英文（它是给模型读的），本地化只�
 三件事先做好再提交：端点能自己握手（`initialize` + `tools/list` + 一次真实调用）、
 仓库里放一个可跑的自检脚本、服务名在包内与服务端声明一致。
 
+**魔搭实测走通的是「自定义创建」，不是「从 GitHub 仓库快速创建」**——后者在境内会误报
+「README 缺失」，别在这条路上改 README。表单里「托管类型」漏选会静默失败，
+README 是 Monaco 编辑器、只能靠剪贴板粘贴写入。三个坑的细节见 cn-mcp.md。
+
+**文案：不写会过期的固定数量。** 词条数、数据条数这类当前快照，词库一扩就对不上，
+而它同时躺在 README、包描述、frontmatter 和几个平台后台里，改一次必然漏几处。
+写能力不写数量：「一句话用感觉检索最匹配的视觉风格」。
+
 **真正免登录的国内渠道只有两条**：GitHub 中文榜 PR（`yzfly/Awesome-MCP-ZH`，7.8K star，
 `pull_request_creation_policy: all`）与自建发现端点。其余平台都要手机号/实名，必须用户本人登录。
 
-逐站实测（入口、登录要求、卡点）、魔搭的完整创建路径、AIBase 的服务配置 JSON 格式，
-见 [references/cn-mcp.md](references/cn-mcp.md)。
+逐站实测（入口、登录要求、卡点）、魔搭的完整创建路径与表单三坑、AIBase 的服务配置 JSON 格式，
+见 [references/cn-mcp.md](references/cn-mcp.md)。文案类踩坑见
+[references/pitfalls.md](references/pitfalls.md) 的「文案相关」。
 
 ## 提交配方
 
